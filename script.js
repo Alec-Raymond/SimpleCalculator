@@ -1,6 +1,6 @@
 let operand1 = 0.0,
-  operand2 = "";
-let operator = "";
+  operand2 = "",
+  operator = "";
 
 // Simulating the screen of a calculator
 const outputLine = document.getElementById("output");
@@ -16,8 +16,6 @@ const displayOperand2 = function () {
   else outputLine.innerHTML = operand2;
 };
 displayOperand2();
-
-// Converts operand2 from a string into a valid float
 
 /* Performs all of the operations of the calculator:
    addition, subtraction, multiplication, division, clear, and equals/enter
