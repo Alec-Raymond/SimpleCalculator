@@ -17,8 +17,6 @@ const displayOperand2 = function () {
 };
 displayOperand2();
 
-// Converts operand2 from a string into a valid float
-
 /* Performs all of the operations of the calculator:
    addition, subtraction, multiplication, division, clear, and equals/enter
 */
