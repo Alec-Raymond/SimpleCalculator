@@ -16,8 +16,13 @@ const display = function (operand) {
 };
 display();
 
+<<<<<<< HEAD
 /* Performs the math functions of the calculator:
    addition, subtraction, multiplication, division
+=======
+/* Performs all of the operations of the calculator:
+   addition, subtraction, multiplication, division, clear, and equals/enter
+>>>>>>> d21539e46c4689d9d3ab348a631f87789ed78ce9
 */
 const operator = function () {
   if (operation.length == 3) {
