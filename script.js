@@ -1,98 +1,100 @@
-let operand1 = 0.0,
-  operand2 = "";
-let operator = "";
+let operation = [""];
+let entered = false;
 
 // Simulating the screen of a calculator
 const outputLine = document.getElementById("output");
 
 // Displays operand1, a float
-const displayOperand1 = function () {
-  outputLine.innerHTML = operand1;
-};
-
-// Displays operand2, a string
-const displayOperand2 = function () {
-  if (operand2 == "") outputLine.innerHTML = 0;
-  else outputLine.innerHTML = operand2;
-};
-displayOperand2();
-
-/* Performs all of the operations of the calculator:
-   addition, subtraction, multiplication, division, clear, and equals/enter
-*/
-const operation = function () {
-  switch (operator) {
-    case "":
-      operand1 = parseFloat(operand2) || operand1;
-      displayOperand1();
-      operand2 = "";
-      break;
-    case "+":
-      operand1 += parseFloat(operand2) || 0;
-      displayOperand1();
-      operand2 = "";
-      break;
-    case "-":
-      operand1 -= parseFloat(operand2) || 0;
-      displayOperand1();
-      operand2 = "";
-      break;
-    case "*":
-      operand1 *= parseFloat(operand2) || 1;
-      displayOperand1();
-      operand2 = "";
-      break;
-    case "/":
-      operand1 /= parseFloat(operand2) || 1;
-      displayOperand1();
-      operand2 = "";
-      break;
-    default:
-      handlers.clear();
+const display = function (operand) {
+  if (operation[0] === "" && operation.length === 1) {
+    outputLine.innerHTML = "0";
+  } else if (operation[2] === "" || operation.length === 2) {
+    outputLine.innerHTML = operation[0];
+  } else {
+    outputLine.innerHTML = operation[operation.length - 1];
   }
 };
+display();
 
-// Takes all the button presses, and changes and executes what needs to be executed
+/* Performs the math functions of the calculator:
+   addition, subtraction, multiplication, division
+*/
+const operator = function () {
+  if (operation.length == 3) {
+    switch (operation[1]) {
+      case "add":
+        operation[0] = (
+          parseFloat(operation[0]) + (parseFloat(operation[2]) || 0)
+        ).toString();
+        operation.splice(1, 2);
+        break;
+      case "subtract":
+        operation[0] = (
+          parseFloat(operation[0]) - (parseFloat(operation[2]) || 0)
+        ).toString();
+        operation.splice(1, 2);
+        break;
+      case "multiply":
+        operation[0] = (
+          parseFloat(operation[0]) * (parseFloat(operation[2]) || 1)
+        ).toString();
+        operation.splice(1, 2);
+        break;
+      case "divide":
+        operation[0] = (
+          parseFloat(operation[0]) / (parseFloat(operation[2]) || 1)
+        ).toString();
+        operation.splice(1, 2);
+        break;
+      default:
+        handlers.clear();
+    }
+  }
+  display();
+};
+
+// Takes all the button presses and uses them to create a functioning calculator
 const handlers = {
   numericInput: function (value) {
-    operand2 += `${value}`;
-    displayOperand2();
+    if (entered) handlers.clear();
+    if (operation.length === 2) operation.push("");
+    operation[operation.length - 1] += `${value}`;
+    display();
   },
   decimal: function () {
-    operand2 += ".";
-    displayOperand2();
+    if (entered) handlers.clear();
+    operation[operation.length - 1] += ".";
+    display();
   },
   negative: function () {
-    if (operand2[0] == "-") operand2 = operand2.slice(1);
-    else operand2 = "-" + operand2;
-    displayOperand2();
-  },
-  addition: function () {
-    operation();
-    if (operator != "+") {
-      operator = "+";
+    if (entered) handlers.clear();
+    if (operation[operation.length - 1].substring(0, 1) === "-") {
+      operation[operation.length - 1] = operation[operation.length - 1].slice(
+        1
+      );
+    } else {
+      operation[operation.length - 1] = "-" + operation[operation.length - 1];
     }
+    display();
   },
-  subtraction: function () {
-    operation();
-    operator = "-";
-  },
-  multiplication: function () {
-    operation();
-    operator = "*";
-  },
-  division: function () {
-    operation();
-    operator = "/";
+  func: function (tor) {
+    operator();
+    if (operation.length === 1) {
+      operation.push(tor);
+    } else if (operation.length === 2) {
+      operation[1] = tor;
+    }
+    entered = false;
+    display();
   },
   clear: function () {
-    operand1 = 0.0;
-    operand2 = "";
-    operator = "";
-    displayOperand2();
+    operation = [""];
+    entered = false;
+    display();
   },
   enter: function () {
-    operation();
-    operator = "";
+    operator();
+    display();
+    entered = true;
   },
 };
