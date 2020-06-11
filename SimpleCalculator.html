@@ -6,31 +6,31 @@
 <body>
   <h2>Simple Calculator</h2>
   <body>
-    This app will add, subtract, multiply, and divide any amount of numbers
+    This app will add, subtract, multiply, and divide any amount of numbers!
   </body>
   <h2></h2>
   <div id="output"></div>
   <div>
     <button onclick="handlers.clear()">clear</button>
-    <button onclick="handlers.division()">÷</button>
+    <button onclick="handlers.func('divide')">÷</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(7)">7</button>
     <button onclick="handlers.numericInput(8)">8</button>
     <button onclick="handlers.numericInput(9)">9</button>
-    <button onclick="handlers.multiplication()">x</button>
+    <button onclick="handlers.func('multiply')">x</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(4)">4</button>
     <button onclick="handlers.numericInput(5)">5</button>
     <button onclick="handlers.numericInput(6)">6</button>
-    <button onclick="handlers.subtraction()">-</button>
+    <button onclick="handlers.func('subtract')">-</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(1)">1</button>
     <button onclick="handlers.numericInput(2)">2</button>
     <button onclick="handlers.numericInput(3)">3</button>
-    <button onclick="handlers.addition()">+</button>
+    <button onclick="handlers.func('add')">+</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(0)">0</button>
