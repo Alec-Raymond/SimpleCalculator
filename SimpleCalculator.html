@@ -12,29 +12,31 @@
   <div id="output"></div>
   <div>
     <button onclick="handlers.clear()">clear</button>
-    <button onclick="handlers.func('divide')">÷</button>
+    <button onclick="handlers.oper('÷')">÷</button>
+    <button onclick="handlers.open()">(</button>
+    <button onclick="handlers.closed()">)</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(7)">7</button>
     <button onclick="handlers.numericInput(8)">8</button>
     <button onclick="handlers.numericInput(9)">9</button>
-    <button onclick="handlers.func('multiply')">x</button>
+    <button onclick="handlers.oper('x')">x</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(4)">4</button>
     <button onclick="handlers.numericInput(5)">5</button>
     <button onclick="handlers.numericInput(6)">6</button>
-    <button onclick="handlers.func('subtract')">-</button>
+    <button onclick="handlers.oper('-')">-</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(1)">1</button>
     <button onclick="handlers.numericInput(2)">2</button>
     <button onclick="handlers.numericInput(3)">3</button>
-    <button onclick="handlers.func('add')">+</button>
+    <button onclick="handlers.oper('+')">+</button>
   </div>
   <div>
     <button onclick="handlers.numericInput(0)">0</button>
-    <button onclick="handlers.decimal()">.</button>
+    <button onclick="handlers.numericInput('.')">.</button>
     <button onclick="handlers.negative()">(-)</button>
     <button onclick="handlers.enter()">=</button>
   </div>
